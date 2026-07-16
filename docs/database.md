@@ -16,6 +16,6 @@ Dentro de esta instancia se crearán 3 bases correspondientes, una para desarrol
 
 ## Usuarios
 
-Cada base de datos contará con un usuario con los permisos correspondientes para poder acceder a la base de datos
+Cada base de datos contará con un usuario con los permisos correspondientes para poder acceder a la base de datos.
 
 > Las contraseñas no son almacenadas en el repositorio. Son gestionadas mediantes variables de entornos y secretos.
