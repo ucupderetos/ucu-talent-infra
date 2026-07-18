@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Google Cloud Secret Manager se utiliza para almacenar de forma segura las credenciales utilizadas por la infraestructura y la aplicación, evitando incluir información sensible en el código fuente, archivos de configuración o variables de entorno versionadas.
+Google Cloud Secret Manager se utiliza para almacenar de forma segura las credenciales utilizadas por la infraestructura y las aplicaciones, evitando incluir información sensible en el código fuente, archivos de configuración o variables de entorno.
 
 ---
 
@@ -10,23 +10,25 @@ Google Cloud Secret Manager se utiliza para almacenar de forma segura las creden
 
 | Nombre | Descripción |
 |---------|-------------|
-| `dev-backend-db-username` | Usuario PostgreSQL utilizado por la aplicación Backend. |
-| `dev-backend-db-password` | Contraseña del usuario utilizado por el Backend. |
-| `dev-flyway-db-username` | Usuario PostgreSQL utilizado por Flyway para ejecutar migraciones. |
-| `dev-flyway-db-password` | Contraseña del usuario utilizado por Flyway. |
-| `dev-postgres-db-password` | Contraseña del usuario administrador `postgres`. |
+| `dev-backend-db-username` | Usuario PostgreSQL utilizado por la aplicación Backend del entorno DEV. |
+| `dev-backend-db-password` | Contraseña del usuario utilizado por la aplicación Backend del entorno DEV. |
+| `dev-flyway-db-username` | Usuario PostgreSQL utilizado por Flyway para ejecutar migraciones en DEV. |
+| `dev-flyway-db-password` | Contraseña del usuario utilizado por Flyway en DEV. |
+| `qa-backend-db-username` | Usuario PostgreSQL utilizado por la aplicación Backend del entorno QA. |
+| `qa-backend-db-password` | Contraseña del usuario utilizado por la aplicación Backend del entorno QA. |
+| `qa-flyway-db-username` | Usuario PostgreSQL utilizado por Flyway para ejecutar migraciones en QA. |
+| `qa-flyway-db-password` | Contraseña del usuario utilizado por Flyway en QA. |
+| `prod-backend-db-username` | Usuario PostgreSQL utilizado por la aplicación Backend del entorno PROD. |
+| `prod-backend-db-password` | Contraseña del usuario utilizado por la aplicación Backend del entorno PROD. |
+| `prod-flyway-db-username` | Usuario PostgreSQL utilizado por Flyway para ejecutar migraciones en PROD. |
+| `prod-flyway-db-password` | Contraseña del usuario utilizado por Flyway en PROD. |
+| `postgres-db-password` | Contraseña del usuario administrador `postgres` de la instancia Cloud SQL. |
 
 ---
 
 # Configuración recomendada
 
-Al crear un secreto utilizar la configuración por defecto.
-
-- Replicación automática
-- Encriptación administrada por Google
-- Sin fecha de expiración
-- Sin rotación automática
-- Sin destrucción diferida
+Al crear un secreto, utilizar la configuración por defecto.
 
 ---
 
@@ -34,21 +36,28 @@ Al crear un secreto utilizar la configuración por defecto.
 
 Se utiliza la siguiente convención de nombres:
 
-```
-
+```text
 dev-backend-db-username
 dev-backend-db-password
-
 dev-flyway-db-username
 dev-flyway-db-password
 
-dev-postgres-db-password
+qa-backend-db-username
+qa-backend-db-password
+qa-flyway-db-username
+qa-flyway-db-password
 
+prod-backend-db-username
+prod-backend-db-password
+prod-flyway-db-username
+prod-flyway-db-password
+
+postgres-db-password
 ```
 
 Esta convención permite diferenciar fácilmente:
 
-- entorno (`dev`)
+- entorno (`dev`, `qa`, `prod`)
 - servicio (`backend`, `flyway`, `postgres`)
 - tipo de credencial (`username`, `password`)
 
@@ -58,17 +67,15 @@ Esta convención permite diferenciar fácilmente:
 
 1. Ingresar a Google Cloud Console.
 2. Ir a Security → Secret Manager.
-3. Tocar Create Secret.
+3. Seleccionar Create Secret.
 4. Completar:
 
 **Nombre**
 
 Ejemplo:
 
-```
-
+```text
 dev-backend-db-password
-
 ```
 
 **Valor secreto**
@@ -80,17 +87,8 @@ Ingresar el valor correspondiente.
 
 ---
 
-
 # Acceso
 
-Los permisos sobre Secret Manager deben otorgarse únicamente a las cuentas de servicio o usuarios que realmente los necesiten.
+Los secretos deben otorgarse únicamente a las cuentas de servicio o usuarios que realmente los necesiten, siguiendo el principio de mínimo privilegio.
 
-Ejemplo:
-
-- Backend → acceso a credenciales del Backend.
-- Flyway → acceso a credenciales de Flyway.
-- Infraestructura → acceso administrativo.
-- El usuario `postgres` debe utilizarse únicamente para tareas administrativas.
-
-
-
+Las credenciales de uso personal de los desarrolladores y testers no se almacenan en Secret Manager, ya que son utilizadas únicamente para conexiones manuales a la base de datos y no por la infraestructura o las aplicaciones.
