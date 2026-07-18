@@ -2,7 +2,7 @@
 
 > **Importante:** Antes de seguir esta guía, completar la [Guía de configuración del entorno local](./cloud-sql-local-setup.md). Allí se explica cómo instalar Google Cloud SDK, autenticarse en Google Cloud y configurar las credenciales necesarias para acceder al proyecto.
 
-Esta guía explica cómo conectarse a la base de datos de desarrollo de Google Cloud SQL desde un cliente PostgreSQL (DataGrip, IntelliJ IDEA, DBeaver, pgAdmin, entre otros) utilizando Cloud SQL Auth Proxy.
+Esta guía explica cómo conectarse a una base de datos de Google Cloud SQL desde un cliente PostgreSQL (DataGrip, IntelliJ IDEA, DBeaver, pgAdmin, entre otros) utilizando Cloud SQL Auth Proxy.
 
 ---
 
@@ -46,10 +46,8 @@ Crear una nueva conexión PostgreSQL en el cliente de preferencia (DataGrip, Int
 |-------|-------|
 | Host | `127.0.0.1` |
 | Port | `9470` |
-| Database | `talent_db_dev` |
+| Database | Base de datos correspondiente al entorno (`ucu_talent_database_dev`, `ucu_talent_database_qa` o `ucu_talent_database_prod`) |
 | User | `<usuario>` |
 | Password | `<contraseña>` |
 
 Luego seleccionar **Test Connection** para verificar que la conexión sea correcta.
-
-

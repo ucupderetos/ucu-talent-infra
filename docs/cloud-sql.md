@@ -46,7 +46,13 @@ Los permisos se administran mediante roles de PostgreSQL.
 
 | Rol | Descripción |
 |------|-------------|
-| Rol de aplicación | Permisos de lectura y escritura sobre las tablas utilizadas por la aplicación. |
+| `backend_<entorno>_role` | Rol que agrupa los permisos de lectura y escritura sobre las tablas utilizadas por la aplicación y los usuarios del entorno correspondiente. |
+
+Donde `<entorno>` puede ser:
+
+- `dev`
+- `qa`
+- `prod`
 
 Las modificaciones estructurales de la base de datos se realizan únicamente mediante migraciones de Flyway.
 
@@ -58,6 +64,8 @@ Las credenciales de la base de datos no se almacenan en el repositorio.
 
 Se gestionan mediante Google Cloud Secret Manager y son consumidas por los servicios durante la ejecución.
 
+Las credenciales personales de los desarrolladores no se almacenan en Secret Manager.
+
 ---
 
 ## Seguridad
@@ -67,6 +75,7 @@ Se gestionan mediante Google Cloud Secret Manager y son consumidas por los servi
 - Cada componente utiliza un usuario de base de datos con permisos específicos.
 - La estructura de la base de datos se administra mediante Flyway.
 - El acceso a la base de datos se realiza mediante Cloud SQL Auth Proxy.
+
 
 ---
 
