@@ -6,6 +6,14 @@ Google Cloud Secret Manager se utiliza para almacenar de forma segura las creden
 
 ---
 
+## Arquitectura
+
+El siguiente diagrama muestra cómo se organizan los secretos por entorno y qué componentes de la infraestructura consumen cada uno de ellos.
+
+![Secret Manager by Environment](diagrams/secret-manager-by-environment.png)
+
+---
+
 # Secretos utilizados
 
 | Nombre | Descripción |

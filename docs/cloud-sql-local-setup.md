@@ -4,6 +4,14 @@ Esta guía describe los pasos necesarios para configurar el entorno de desarroll
 
 ---
 
+## Arquitectura
+
+El siguiente diagrama muestra cómo el backend se conecta a una instancia de Cloud SQL desde un entorno de desarrollo local mediante Cloud SQL Auth Proxy y Application Default Credentials (ADC).
+
+![Local Development - Cloud SQL Connectivity](diagrams/cloud-sql-connectivity.png)
+
+---
+
 # 1. Instalar Google Cloud SDK
 
 Descargar e instalar **Google Cloud SDK** desde el siguiente enlace:
@@ -103,17 +111,25 @@ Copiar el archivo `.env.example` y crear un archivo `.env` en el directorio raí
 
 Completar las siguientes variables:
 
-> **Importante:** Cada desarrollador debe solicitar al equipo de Infra su usuario y contraseña de PostgreSQL antes de ejecutar el proyecto.
+> **Importante:** Antes de ejecutar el proyecto, cada desarrollador debe solicitar al equipo de Infra su usuario y contraseña de PostgreSQL, así como el usuario y la contraseña de Flyway correspondientes al entorno con el que va a trabajar.
 
 ```env
 POSTGRES_USER=<usuario_asignado>
 POSTGRES_PASSWORD=<contraseña_asignada>
 
-FLYWAY_USER=flyway_user
+FLYWAY_USER=<usuario_flyway_del_entorno>
 FLYWAY_PASSWORD=<contraseña_flyway>
 
 GOOGLE_APPLICATION_CREDENTIALS_HOST=C:/Users/<USUARIO>/AppData/Roaming/gcloud/application_default_credentials.json
 ```
+
+Los usuarios de Flyway varían según el entorno:
+
+| Entorno | FLYWAY_USER |
+|----------|-------------|
+| DEV | `flyway_dev` |
+| QA | `flyway_qa` |
+| PROD | `flyway_prod` |
 
 > **Nota:** En Windows utilizar `/` en lugar de `\` en la ruta de `GOOGLE_APPLICATION_CREDENTIALS_HOST`.
 
