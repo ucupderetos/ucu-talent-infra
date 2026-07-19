@@ -6,7 +6,7 @@ Este proyecto utiliza Git flow como estrategia de control de versiones.
 
 Es una estrategia de trabajo para organizar el desarrollo de un proyecto utilizando ramas en Git. El objetivo de esto es permitir que varios desarrolladores trabajen en paralelo sin afectar la estabilidad del codigo principal.
 
-Cada cambio se desarrolla en ramas inependientes y una ves revisado y aprovado mediante un Pull Request, se integra ala rama correspondiente
+Cada cambio se desarrolla en ramas inependientes y una ves revisado y aprovado mediante un Pull Request, se integra a la rama correspondiente
 
 ## Nomenclatura de Ramas
 
@@ -25,7 +25,7 @@ En donde:
 | main | Contiene la versión estable del proyecto |
 | dev | Es la rama principal de desarrollo donde se guardan los cambios aprobados |
 | feature/* | Se usa para desarrollar nuevas funcionalidades |
-| bugfix/* | Se usa para corregir errores en entornos de desarrollo o pruebas(dev) |
+| bugfix/* | Se usa para corregir errores en entornos de desarrollo o pruebas (dev) |
 | hotfix/* | Se usa para corregir errores críticos en producción (main) |
 | release/* | Se usa para preparar una nueva versión antes de publicarla |
 | refactor/* | Se usa para reorganizar o mejorar la estructura del codigo sin modificarle el funcionamiento |
