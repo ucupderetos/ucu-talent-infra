@@ -91,6 +91,16 @@ Detecta respuestas lentas del backend que pueden afectar la experiencia del usua
 
 ---
 
+#### HTTP 5xx Error Rate
+
+Filtro: Response Code Class = 5xx
+
+Umbral: Más de una respuesta HTTP
+
+Detecta cuando la aplicación comienza a devolver errores internos del servidor.
+
+---
+
 ### Cloud SQL
 
 #### High CPU Usage Policy
@@ -98,6 +108,14 @@ Detecta respuestas lentas del backend que pueden afectar la experiencia del usua
 **Umbral:** 80 %
 
 Detecta una alta carga del procesador de la base de datos.
+
+---
+
+#### High Memory Usage Policy
+
+**Umbral:** 80 %
+
+Detecta un consumo elevado de memoria de la base de datos.
 
 ---
 
