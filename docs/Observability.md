@@ -37,7 +37,7 @@ Cloud Monitoring se utiliza para conocer el estado de la infraestructura y detec
 
 ---
 
-# Dahboard
+## Dahboard
 
 Dashboard es un panel que muestra en tiempo real las métricas más importanttes del sistema.
 
@@ -93,9 +93,9 @@ Detecta respuestas lentas del backend que pueden afectar la experiencia del usua
 
 #### HTTP 5xx Error Rate
 
-Filtro: Response Code Class = 5xx
+**Filtro:** Response Code Class = 5xx
 
-Umbral: Más de una respuesta HTTP
+**Umbral:** Más de una respuesta HTTP
 
 Detecta cuando la aplicación comienza a devolver errores internos del servidor.
 
@@ -134,3 +134,16 @@ Detecta cuando el almacenamiento disponible comienza a ser insuficiente.
 Detecta una cantidad elevada de conexiones simultáneas a la base de datos.
 
 ---
+
+## Error Reporting
+
+Error Reporting es un servocio de Google Cloud que recopila, agrupa y muestra automáticamente los errores generados por las aplicaciones que ejecutan servicios como cloud Run.
+
+Error Reporting se utiliza para analizar los registros enviados a Cloud Logging e identifica excepciones, errores y fallos repetitivos. Estos son agrupados automáticamente, mostrando:
+
+- Tipo de error.
+- Cantidad de occurrencias.
+- Fecha y hora de la prueba y última aparición.
+- Traza del error.
+- Servicio y versión afectados.
+
