@@ -1,20 +1,20 @@
-#CI/CD Backend Java + Maven
+# CI/CD Backend Java + Maven
 
 Documentación del pipeline de integración y despliegue continuo del backend definido en '.github/workflows/' (GitHub Actions).
 
-##Idea central
+## Idea central
 
 El pipeline corre los test unitarios y valida el build de la imagen docker en cada PR que se crea a 'dev' o a 'main'. Cuando se hace push a 'dev' o 'main', 
 ademas construye la imagen y la sube a artifact registry y la despliega en cloud run.
 
-##Trigger
+## Trigger
 
 El workflow se dispara así:
 
 Pull request a dev o main --> dispara el CI (Corre test unitarios y buildea la imagen docker)
 Push a dev o main --> dispara el CD correspondiente a su ambiente (Corre el CI, si pasa buildea la imagen para artifact y la despliega en una instancia de cloud run).
 
-##Jobs
+## Jobs
 
 ### 1. 'unit-test-backend' (CI)
 
