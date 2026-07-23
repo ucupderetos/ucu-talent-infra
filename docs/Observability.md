@@ -95,7 +95,7 @@ Detecta una alta utilización del procesador del backend.
 
 #### High Memory Usage Policy
 
-**Umbral:** 80 %
+**Umbral:** 90 %
 
 Detecta un consumo elevado de memoria del servicio.
 
