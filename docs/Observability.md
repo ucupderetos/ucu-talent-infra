@@ -39,23 +39,41 @@ Cloud Monitoring se utiliza para conocer el estado de la infraestructura y detec
 
 ## Dahboard
 
-Dashboard es un panel que muestra en tiempo real las métricas más importanttes del sistema.
+Un Dashboard es un panel de visualización que reúne en un solo lugar las principales métricas de los recursos de la infraestructura.
 
-Se configuraron las siguientes metricas:
+Su objetivo es facilitar el monitoreo en tiempo real del estado de los servicios, permitiendo identificar rápidamente comportamientos fuera de lo normal, analizar el rendimiento y apoyar la investigación cuando se genera una alerta o un incidente.
 
-### Cloud Run
+Para este proyecto se crearon dos dashboards: uno para **Cloud Run** y otro para **Cloud SQL**, cada uno con las métricas más relevantes de los recursos que monitorea.
 
-- CPU utilization.
-- Memory utilization.
-- Request latency
+---
 
-### Cloud SQL
+### Dashboard de Cloud Run
 
-- CPU utilization
-- Disk utilization
-- Connection count
+Se creó un dashboard dedicado al monitoreo del servicio **Cloud Run**, con el objetivo de visualizar en tiempo real el estado y rendimiento de la aplicación desplegada.
 
-Esto con el objetivo de visualizr el estado desde un único panel.
+Las métricas incluidas son:
+
+- High CPU Usage Policy
+- High Memory Usage Policy
+- High Request Latency Policy
+- HTTP 5xx Error Alert Policy
+
+Este dashboard permite detectar aumentos en la carga del servicio, problemas de rendimiento y posibles degradaciones en los tiempos de respuesta.
+
+---
+
+### Dashboard de Cloud SQL
+
+Se creó un dashboard dedicado al monitoreo de la instancia de **Cloud SQL**, permitiendo supervisar en tiempo real el estado y rendimiento de la base de datos.
+
+Las métricas incluidas son:
+
+- High CPU Usage Policy 
+- High Memory Usage Policy 
+- High Disk Usage Policy
+- High Connection Count Policy .
+
+Este dashboard facilita la detección de saturación de recursos, incrementos en la carga de la base de datos y otros comportamientos que puedan afectar el funcionamiento de la aplicación.
 
 ---
 
@@ -91,7 +109,7 @@ Detecta respuestas lentas del backend que pueden afectar la experiencia del usua
 
 ---
 
-#### HTTP 5xx Error Rate
+#### HTTP 5xx Error Alert
 
 **Filtro:** Response Code Class = 5xx
 
