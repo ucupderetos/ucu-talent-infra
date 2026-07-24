@@ -87,7 +87,7 @@ Las AlertPolicies generan una notificación cuando una métrica supera un umbral
 
 #### High CPU Usage Policy
 
-**Umbral:** 80 %
+**Umbral:** 90 %
 
 Detecta una alta utilización del procesador del backend.
 
@@ -123,7 +123,7 @@ Detecta cuando la aplicación comienza a devolver errores internos del servidor.
 
 #### High CPU Usage Policy
 
-**Umbral:** 80 %
+**Umbral:** 90 %
 
 Detecta una alta carga del procesador de la base de datos.
 
@@ -131,7 +131,7 @@ Detecta una alta carga del procesador de la base de datos.
 
 #### High Memory Usage Policy
 
-**Umbral:** 80 %
+**Umbral:** 90 %
 
 Detecta un consumo elevado de memoria de la base de datos.
 
@@ -147,7 +147,7 @@ Detecta cuando el almacenamiento disponible comienza a ser insuficiente.
 
 #### High Connection Count Policy
 
-**Umbral:** 80 conexiones
+**Umbral:** 90 conexiones
 
 Detecta una cantidad elevada de conexiones simultáneas a la base de datos.
 
