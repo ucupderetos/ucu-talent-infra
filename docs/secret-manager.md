@@ -29,7 +29,6 @@ El siguiente diagrama muestra cómo se organizan los secretos por entorno y qué
 | `prod-flyway-db-password` | Contraseña del usuario utilizado por Flyway en PROD. |
 | `prod-jwt-secret` | Clave secreta utilizada para la generación y validación de tokens JWT en PROD. |
 | `postgres-db-password` | Contraseña del usuario administrador de PostgreSQL utilizada para tareas administrativas sobre la instancia Cloud SQL. |
-| `GCP_SA_KEY` | Credencial utilizada para autenticación con Google Cloud desde procesos automatizados como CI/CD. |
 | `mail-username` | Usuario utilizado para la configuración del servicio de correo electrónico. |
 | `mail-password` | Contraseña utilizada para la autenticación del servicio de correo electrónico. |
 
