@@ -51,7 +51,6 @@ Los permisos se administran mediante roles de PostgreSQL.
 Donde `<entorno>` puede ser:
 
 - `dev`
-- `qa`
 - `prod`
 
 Las modificaciones estructurales de la base de datos se realizan únicamente mediante migraciones de Flyway.

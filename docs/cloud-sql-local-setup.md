@@ -128,7 +128,6 @@ Los usuarios de Flyway varían según el entorno:
 | Entorno | FLYWAY_USER |
 |----------|-------------|
 | DEV | `flyway_dev` |
-| QA | `flyway_qa` |
 | PROD | `flyway_prod` |
 
 > **Nota:** En Windows utilizar `/` en lugar de `\` en la ruta de `GOOGLE_APPLICATION_CREDENTIALS_HOST`.
