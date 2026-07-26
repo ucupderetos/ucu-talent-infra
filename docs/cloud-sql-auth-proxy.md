@@ -46,7 +46,7 @@ Crear una nueva conexión PostgreSQL en el cliente de preferencia (DataGrip, Int
 |-------|-------|
 | Host | `127.0.0.1` |
 | Port | `9470` |
-| Database | Base de datos correspondiente al entorno (`ucu_talent_database_dev`, `ucu_talent_database_qa` o `ucu_talent_database_prod`) |
+| Database | Base de datos correspondiente al entorno (`ucu_talent_database_dev` o `ucu_talent_database_prod`) |
 | User | `<usuario>` |
 | Password | `<contraseña>` |
 

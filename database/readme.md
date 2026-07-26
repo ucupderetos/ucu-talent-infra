@@ -7,7 +7,6 @@ Esta carpeta contiene los scripts SQL utilizados para configurar los usuarios, r
 ```
 database/
 ├── dev.sql
-├── qa.sql
 ├── prod.sql
 └── README.md
 ```
@@ -17,7 +16,6 @@ database/
 | Archivo | Entorno |
 |---------|----------|
 | `dev.sql` | Desarrollo |
-| `qa.sql` | QA |
 | `prod.sql` | Producción |
 
 Cada script configura:

@@ -22,15 +22,16 @@ El siguiente diagrama muestra cómo se organizan los secretos por entorno y qué
 | `dev-backend-db-password` | Contraseña del usuario utilizado por la aplicación Backend del entorno DEV. |
 | `dev-flyway-db-username` | Usuario PostgreSQL utilizado por Flyway para ejecutar migraciones en DEV. |
 | `dev-flyway-db-password` | Contraseña del usuario utilizado por Flyway en DEV. |
-| `qa-backend-db-username` | Usuario PostgreSQL utilizado por la aplicación Backend del entorno QA. |
-| `qa-backend-db-password` | Contraseña del usuario utilizado por la aplicación Backend del entorno QA. |
-| `qa-flyway-db-username` | Usuario PostgreSQL utilizado por Flyway para ejecutar migraciones en QA. |
-| `qa-flyway-db-password` | Contraseña del usuario utilizado por Flyway en QA. |
+| `dev-jwt-secret` | Clave secreta utilizada para la generación y validación de tokens JWT en DEV. |
 | `prod-backend-db-username` | Usuario PostgreSQL utilizado por la aplicación Backend del entorno PROD. |
 | `prod-backend-db-password` | Contraseña del usuario utilizado por la aplicación Backend del entorno PROD. |
 | `prod-flyway-db-username` | Usuario PostgreSQL utilizado por Flyway para ejecutar migraciones en PROD. |
 | `prod-flyway-db-password` | Contraseña del usuario utilizado por Flyway en PROD. |
-| `postgres-db-password` | Contraseña del usuario administrador `postgres` de la instancia Cloud SQL. |
+| `prod-jwt-secret` | Clave secreta utilizada para la generación y validación de tokens JWT en PROD. |
+| `postgres-db-password` | Contraseña del usuario administrador de PostgreSQL utilizada para tareas administrativas sobre la instancia Cloud SQL. |
+| `GCP_SA_KEY` | Credencial utilizada para autenticación con Google Cloud desde procesos automatizados como CI/CD. |
+| `mail-username` | Usuario utilizado para la configuración del servicio de correo electrónico. |
+| `mail-password` | Contraseña utilizada para la autenticación del servicio de correo electrónico. |
 
 ---
 
@@ -50,10 +51,6 @@ dev-backend-db-password
 dev-flyway-db-username
 dev-flyway-db-password
 
-qa-backend-db-username
-qa-backend-db-password
-qa-flyway-db-username
-qa-flyway-db-password
 
 prod-backend-db-username
 prod-backend-db-password
@@ -65,7 +62,7 @@ postgres-db-password
 
 Esta convención permite diferenciar fácilmente:
 
-- entorno (`dev`, `qa`, `prod`)
+- entorno (`dev`, `prod`)
 - servicio (`backend`, `flyway`, `postgres`)
 - tipo de credencial (`username`, `password`)
 
