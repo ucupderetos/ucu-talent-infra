@@ -43,43 +43,57 @@ Un Dashboard es un panel de visualización que reúne en un solo lugar las princ
 
 Su objetivo es facilitar el monitoreo en tiempo real del estado de los servicios, permitiendo identificar rápidamente comportamientos fuera de lo normal, analizar el rendimiento y apoyar la investigación cuando se genera una alerta o un incidente.
 
-Para este proyecto se crearon dos dashboards: uno para **Cloud Run** y otro para **Cloud SQL**, cada uno con las métricas más relevantes de los recursos que monitorea.
+Para este proyecto se crearon dos dashboards, uno para el ambiente de desarrollo (DEV) y otro para el ambiente de producción (PROD). Cada uno reúne las métricas de Cloud Run y Cloud SQL correspondientes a su entorno.
 
 ---
 
-### Dashboard de Cloud Run
+### Dashboard DEV
 
-Se creó un dashboard dedicado al monitoreo del servicio **Cloud Run**, con el objetivo de visualizar en tiempo real el estado y rendimiento de la aplicación desplegada.
+Permite monitorear el estado y rendimiento de la infraestructura del ambiente de desarrollo.
 
-Las métricas incluidas son:
+Incluye métricas de Cloud Run:
 
-- High CPU Usage Policy
-- High Memory Usage Policy
-- High Request Latency Policy
-- HTTP 5xx Error Alert Policy
+- CPU Utilization
+- Memory Utilization
+- Request Latency
+- HTTP 5xx Error Rate
 
-Este dashboard permite detectar aumentos en la carga del servicio, problemas de rendimiento y posibles degradaciones en los tiempos de respuesta.
+Y métricas de Cloud SQL:
 
----
+- CPU Utilization
+- Memory Utilization
+- Disk Utilization
+- Connection Count
 
-### Dashboard de Cloud SQL
+Este dashboard facilita detectar problemas durante el desarrollo y las pruebas antes de llegar a producción.
 
-Se creó un dashboard dedicado al monitoreo de la instancia de **Cloud SQL**, permitiendo supervisar en tiempo real el estado y rendimiento de la base de datos.
+### Dashboard PROD
 
-Las métricas incluidas son:
+Permite monitorear el estado y rendimiento de la infraestructura del ambiente de producción.
 
-- High CPU Usage Policy 
-- High Memory Usage Policy 
-- High Disk Usage Policy
-- High Connection Count Policy .
+Incluye métricas de Cloud Run:
 
-Este dashboard facilita la detección de saturación de recursos, incrementos en la carga de la base de datos y otros comportamientos que puedan afectar el funcionamiento de la aplicación.
+- CPU Utilization
+- Memory Utilization
+- Request Latency
+- HTTP 5xx Error Rate
+
+Y métricas de Cloud SQL:
+
+- CPU Utilization
+- Memory Utilization
+- Disk Utilization
+- Connection Count
+
+Este dashboard permite supervisar el comportamiento del sistema en producción y detectar incidentes que puedan afectar a los usuarios.
 
 ---
 
 ## Alert Policies
 
-Las AlertPolicies generan una notificación cuando una métrica supera un umbral previamente configurado; Con el objetivo de detectar problemas automaticamente sin estar revisando constantemente el dashboard.
+Las Alert Policies generan una notificación cuando una métrica supera un umbral previamente configurado, con el objetivo de detectar problemas automaticamente sin estar revisando constantemente el dashboard.
+
+Las siguientes Alert Policies se configuraron de manera independiente para los ambientes DEV y PROD, lo que permite indentificar rápidamente en que entorno ocurrió el incidente.
 
 ## Alertas configuradas
 
@@ -152,6 +166,8 @@ Detecta cuando el almacenamiento disponible comienza a ser insuficiente.
 Detecta una cantidad elevada de conexiones simultáneas a la base de datos.
 
 ---
+
+Cada una de ellas para cada ambiente.
 
 ## Error Reporting
 
