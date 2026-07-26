@@ -26,20 +26,23 @@ Push a dev o main --> dispara el CD correspondiente a su ambiente (Corre el CI, 
 
   - Chequea que el job anterior haya pasado.
   - Construye la imagen solo para verificar que el DockerFile comipla. Luego la destruye.
+  - Ejecuta un escaneo de vulnerabilidades sobre la imagen utilizando Trivy, buscando vulnerabilidades de severidad HIGH y CRITICAL tanto del sistema operativo como de las dependencias (`os,library`). El escaneo es informativo y no bloquea el pipeline, aunque se detecten vulnerabilidades.
 
-## 3. 'build-and-deploy-dev' (CD)
+## 3. `build-and-deploy-dev` y `build-and-deploy-prod` (CD)
 
   - Chequea que los dos jobs de CI hayan pasado.
-  - Usa el ambiente de github "development" que tiene cargadas la postgre_url de dev y la instancia de cloud.
-  - Autentica contra google cloud usando el secret "GCP_SA_KEY" (service account key).
-  - Configura docker para autenticar contra Artifact Registry.
-  - Buildeo la imagen tageada con el SHA del commit.
-  - Pusheo la imagen a artifact.
-  - Deploy a Cloud Run ('api-dev' o 'api-prod', región `us-central1`), inyectando variables de entorno(vars) y apuntando secrets de google secrets.
-
+  - En Development solo corre cuando el evento es un `push` a `dev`; en Production solo cuando el `push` es a `main`.
+  - Usa el ambiente de GitHub correspondiente (`development` o `production`), donde están configuradas las variables y secretos necesarios.
+  - Autentica contra Google Cloud usando el secret `GCP_SA_KEY` (service account key).
+  - Configura Docker para autenticar contra Artifact Registry.
+  - Construye la imagen y la tagea con el SHA del commit.
+  - Pushea la imagen a Artifact Registry.
+  - Deploy a Cloud Run ('api-dev' o 'api-prod', región `us-central1`), inyectando variables de entorno(vars) y secretos desde Google Secret Manager.
+  
 ## 4. Debuggear
 
  - Fallo en tests o build check: revisar logs del job correspondiente en la pestaña Actions del PR/commit.
  - Fallo en auth contra GCP: verificar que 'GCP_SA_KEY' no haya expirado o que la service account tenga los permisos necesarios (Artifact Registry Writer, Cloud Run Admin, Secret Manager Accessor).
  - Fallo en el deploy a Cloud Run: revisar que los nombres de secrets en Secret Manager coincidan exactamente con los referenciados en el workflow, y que las `vars.*` estén seteadas en el ambiente correspondiente de GitHub.
  - La imagen se subió pero el servicio no arranca: revisar logs del servicio en Cloud Run (Console → Cloud Run → api-dev/api-prod → Logs).
+ - Trivy reportó vulnerabilidades: revisar la salida del step "Scan Docker image with Trivy" en GitHub Actions. El reporte muestra las vulnerabilidades detectadas (HIGH y CRITICAL) sin bloquear el pipeline.

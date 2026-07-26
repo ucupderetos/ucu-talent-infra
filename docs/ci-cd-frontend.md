@@ -25,6 +25,7 @@ Los workflows se disparan así:
   - Chequea que el job anterior haya pasado.
   - Construye la imagen solo para verificar que el Dockerfile compila, pasándole `NEXT_PUBLIC_API_BASE_URL` como build-arg desde `vars.API_BASE_URL`. Despues lo destruye.
   - Corre bajo el `environment` de GitHub correspondiente (`production` o `development`), porque necesita resolver la variable `API_BASE_URL` de ese ambiente para poder buildear.
+  - Ejecuta un escaneo de vulnerabilidades sobre la imagen utilizando Trivy, buscando vulnerabilidades de severidad HIGH y CRITICAL tanto del sistema operativo como de las dependencias (`os,library`). El escaneo es informativo y no bloquea el pipeline, aunque se detecten vulnerabilidades.
 
 ## 3. `build-and-deploy` (CD)
   - Chequea que los dos jobs de CI hayan pasado.
@@ -34,9 +35,9 @@ Los workflows se disparan así:
   - Configura docker para autenticar contra Artifact Registry.
   - Define un tag corto a partir del SHA del commit (`sha-<7 caracteres>`), guardado en `SHORT_SHA`.
   - Buildea la imagen tageada con `SHORT_SHA`, pasando de nuevo `NEXT_PUBLIC_API_BASE_URL` como build-arg (necesario porque en Next.js esta variable se hornea en el build, no alcanza con setearla en runtime).
-  - Además tagea esa misma imagen como `latest`.
-  - Pushea ambos tags (`SHORT_SHA` y `latest`) a Artifact Registry. Como Prod y Dev comparten el mismo repo de imágenes (`.../ucutalent/frontend`), el tag por SHA es lo que permite distinguir de qué build viene cada una; `latest` siempre queda apuntando al build más reciente sin importar el ambiente que lo generó.
-  - Deploy a Cloud Run (`web-dev` o `web-prod`, región `us-central1`), usando la imagen tageada por `SHORT_SHA` (no `latest`, para que el deploy sea siempre a una versión puntual y trazable).
+  - Además tagea esa misma imagen como `dev-latest` (Development) o `prod-latest` (Production).
+  - Pushea ambos tags (`SHORT_SHA` y `dev-latest`/`prod-latest`) a Artifact Registry. Como Prod y Dev comparten el mismo repositorio de imágenes (`.../ucutalent/frontend`), el tag por SHA permite identificar exactamente de qué build proviene cada imagen,    mientras que `dev-latest` y `prod-latest` siempre apuntan a la versión más reciente de cada ambiente.
+  - Deploy a Cloud Run (`web-dev` o `web-prod`, región `us-central1`), usando la imagen tageada por `SHORT_SHA` (no `dev-latest` ni `prod-latest`), para que el despliegue quede asociado a una versión específica y trazable.
 
 ## 4. Debuggear
  - Fallo en tests o build check: revisar logs del job correspondiente en la pestaña Actions del PR/commit.
@@ -44,3 +45,4 @@ Los workflows se disparan así:
  - Fallo en el build por `API_BASE_URL` vacía o incorrecta: revisar que la variable `API_BASE_URL` esté seteada en el ambiente de GitHub correspondiente (Settings → Environments → development/production → Variables). Si está vacía, el build no tira error pero el frontend queda apuntando a una URL de API rota.
  - Fallo en el deploy a Cloud Run: revisar que el `SERVICE` (`web-dev`/`web-prod`) exista en Cloud Run y que la imagen recién pusheada esté disponible en Artifact Registry.
  - La imagen se subió pero el servicio no arranca: revisar logs del servicio en Cloud Run (Console → Cloud Run → web-dev/web-prod → Logs). Verificar también el flag `--port=3000`, que tiene que coincidir con el puerto que expone la app de Next.js dentro del contenedor.
+ - Trivy reportó vulnerabilidades: revisar la salida del step "Scan Docker image with Trivy" en GitHub Actions. El reporte muestra las vulnerabilidades detectadas (HIGH y CRITICAL) sin bloquear el pipeline.
