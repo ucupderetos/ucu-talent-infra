@@ -46,3 +46,7 @@ Los workflows se disparan así:
  - Fallo en el deploy a Cloud Run: revisar que el `SERVICE` (`web-dev`/`web-prod`) exista en Cloud Run y que la imagen recién pusheada esté disponible en Artifact Registry.
  - La imagen se subió pero el servicio no arranca: revisar logs del servicio en Cloud Run (Console → Cloud Run → web-dev/web-prod → Logs). Verificar también el flag `--port=3000`, que tiene que coincidir con el puerto que expone la app de Next.js dentro del contenedor.
  - Trivy reportó vulnerabilidades: revisar la salida del step "Scan Docker image with Trivy" en GitHub Actions. El reporte muestra las vulnerabilidades detectadas (HIGH y CRITICAL) sin bloquear el pipeline.
+
+## 5. Diagrama
+
+![CI/CD Frontend](diagrams/ci-cd-frontend-arch.png)

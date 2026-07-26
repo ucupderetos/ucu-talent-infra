@@ -46,3 +46,7 @@ Push a dev o main --> dispara el CD correspondiente a su ambiente (Corre el CI, 
  - Fallo en el deploy a Cloud Run: revisar que los nombres de secrets en Secret Manager coincidan exactamente con los referenciados en el workflow, y que las `vars.*` estén seteadas en el ambiente correspondiente de GitHub.
  - La imagen se subió pero el servicio no arranca: revisar logs del servicio en Cloud Run (Console → Cloud Run → api-dev/api-prod → Logs).
  - Trivy reportó vulnerabilidades: revisar la salida del step "Scan Docker image with Trivy" en GitHub Actions. El reporte muestra las vulnerabilidades detectadas (HIGH y CRITICAL) sin bloquear el pipeline.
+
+## 5. Diagrama
+
+![CI/CD Backend](diagrams/ci-cd-backend-arch.png)
