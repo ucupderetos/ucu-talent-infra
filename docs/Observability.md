@@ -167,8 +167,6 @@ Detecta una cantidad elevada de conexiones simultáneas a la base de datos.
 
 ---
 
-Cada una de ellas para cada ambiente.
-
 ## Error Reporting
 
 Error Reporting es un servocio de Google Cloud que recopila, agrupa y muestra automáticamente los errores generados por las aplicaciones que ejecutan servicios como cloud Run.
