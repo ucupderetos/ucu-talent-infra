@@ -1,6 +1,6 @@
 # Costos por uso de la infraestructura (mensual)
 
-Con el objetivo de conocer el consumo de los recursos utilizados por la infraestructura desplegada en Google Cloud Platform (GCP), se consultó el reporte de facturación correspondiente por mes. Los valores presentados representan el costo por uso de cada uno de los servicios durante el período analizado.
+Con el objetivo de conocer el consumo de los recursos utilizados por la infraestructura desplegada en Google Cloud Platform (GCP), se consultó el reporte de facturación mensual. Los valores presentados representan el costo por uso de cada uno de los servicios durante el período analizado.
 
 | Servicio | Costo por uso (USD) |
 |----------|---------------|
