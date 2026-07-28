@@ -168,7 +168,7 @@ Durante una investigación de incidentes, los logs permiten identificar qué ocu
 
 En un Data Center no existe un servicio específico equivalente a **Error Reporting** de GCP o **Application Insights** de Azure.
 
-La identificación de errores se basa principalmente en la información registrada en los logs y, cuando la solución lo incorpora, en herramientas de **Application Performance Monitoring (APM)**.
+La identificación de errores se basa principalmente en la información registrada en los logs y cuando la solución lo incorpora, lo incorpora en herramientas de **Application Performance Monitoring (APM)**.
 
 Entre la información que puede obtenerse se encuentra:
 
