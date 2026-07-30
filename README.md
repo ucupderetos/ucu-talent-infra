@@ -20,8 +20,6 @@ El proyecto está desplegado íntegramente en **Google Cloud Platform (GCP)**, c
 | Gestión de secretos | Secret Manager |
 | Autenticación del CI/CD | Service Account key (`GCP_SA_KEY`) |
 | CI/CD | GitHub Actions |
-| Infraestructura como código | Terraform |
-| Configuración | Ansible |
 | Flujo de versionado | Git Flow |
  
 La autenticación de la aplicación es propia (JWT con cookie httpOnly), no depende de un servicio de identidad externo.
@@ -130,4 +128,4 @@ Ver el detalle completo, incluyendo la nomenclatura de ramas (`feature/`, `bugfi
 Si bien la infraestructura actual está desplegada en GCP, la arquitectura fue diseñada para ser portable. La documentación incluye planes concretos de migración de infraestructura y de observabilidad hacia:
  
 - **Microsoft Azure** — ver [Migración GCP → Azure](./gcp-to-azure-migration.md) y [Monitoring en Azure](./monitoring-implementation-alternatives.md).
-- **Data Center on-premises** — ver la sección correspondiente en [Alternativas de implementación de Monitoring](./monitoring-implementation-alternatives.md).
+- **Data Center on-premises** — ver la [Migración GCP → Datacenter UCU](./gcp-to-ucu-datacenter-migration.md) y [Monitoring en Datacenter](./monitoring-implementation-alternatives.md).
