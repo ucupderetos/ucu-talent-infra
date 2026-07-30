@@ -32,55 +32,56 @@ La autenticación de la aplicación es propia (JWT con cookie httpOnly), no depe
  
 | Documento | Descripción |
 |---|---|
-| [Git Workflow](./git-workflow.md) | Estrategia de ramas (Git Flow), nomenclatura y reglas de contribución del equipo. |
+| [Git Workflow](./docs/git-workflow.md) | Estrategia de ramas (Git Flow), nomenclatura y reglas de contribución del equipo. |
  
 ### CI/CD
  
 | Documento | Descripción |
 |---|---|
-| [CI/CD Backend](./ci-cd-backend.md) | Pipeline de GitHub Actions para el backend Java + Maven: test, build check, escaneo con Trivy y deploy a Cloud Run (`api-dev` / `api-prod`). |
-| [CI/CD Frontend](./ci-cd-frontend.md) | Pipelines de GitHub Actions para el frontend Next.js: workflows separados por ambiente, build con `NEXT_PUBLIC_API_BASE_URL`, escaneo con Trivy y deploy a Cloud Run (`web-dev` / `web-prod`). |
+| [CI/CD Backend](./docs/ci-cd-backend.md) | Pipeline de GitHub Actions para el backend Java + Maven: test, build check, escaneo con Trivy y deploy a Cloud Run (`api-dev` / `api-prod`). |
+| [CI/CD Frontend](./docs/ci-cd-frontend.md) | Pipelines de GitHub Actions para el frontend Next.js: workflows separados por ambiente, build con `NEXT_PUBLIC_API_BASE_URL`, escaneo con Trivy y deploy a Cloud Run (`web-dev` / `web-prod`). |
  
 ### Base de datos
  
 | Documento | Descripción |
 |---|---|
-| [Cloud SQL](./cloud-sql.md) | Configuración de la instancia PostgreSQL, organización de usuarios y roles bajo el principio de mínimos privilegios. |
-| [Cloud SQL Auth Proxy](./cloud-sql-auth-proxy.md) | Cómo conectarse a la base de datos desde un cliente PostgreSQL (DataGrip, DBeaver, pgAdmin, etc.) usando el proxy. |
-| [Setup del entorno local](./cloud-sql-local-setup.md) | Guía paso a paso para instalar Google Cloud SDK, autenticarse y levantar el backend localmente contra Cloud SQL. |
+| [Cloud SQL](./docs/cloud-sql.md) | Configuración de la instancia PostgreSQL, organización de usuarios y roles bajo el principio de mínimos privilegios. |
+| [Cloud SQL Auth Proxy](./docs/cloud-sql-auth-proxy.md) | Cómo conectarse a la base de datos desde un cliente PostgreSQL (DataGrip, DBeaver, pgAdmin, etc.) usando el proxy. |
+| [Setup del entorno local](./docs/cloud-sql-local-setup.md) | Guía paso a paso para instalar Google Cloud SDK, autenticarse y levantar el backend localmente contra Cloud SQL. |
  
 ### Almacenamiento de archivos
  
 | Documento | Descripción |
 |---|---|
-| [Bucket Flow](./bucket-flow.md) | Flujo de subida de CVs y fotos de perfil: el backend sube el archivo al bucket vía SDK de Google Cloud y obtiene una signed URL con tiempo de expiración, usando la Service Account por defecto de la instancia de Cloud Run. Funcionalidad exclusiva de los entornos desplegados, no disponible en local por motivos de seguridad. |
+| [Bucket Flow](./docs/bucket-flow.md) | Flujo de subida de CVs y fotos de perfil: el backend sube el archivo al bucket vía SDK de Google Cloud y obtiene una signed URL con tiempo de expiración, usando la Service Account por defecto de la instancia de Cloud Run. Funcionalidad exclusiva de los entornos desplegados, no disponible en local por motivos de seguridad. |
  
 ### Seguridad y secretos
  
 | Documento | Descripción |
 |---|---|
-| [Secret Manager](./secret-manager.md) | Convención de nombres, listado de secretos por entorno (DEV/PROD) y procedimiento para crear nuevos secretos. |
+| [Secret Manager](./docs/secret-manager.md) | Convención de nombres, listado de secretos por entorno (DEV/PROD) y procedimiento para crear nuevos secretos. |
  
 ### Observabilidad
  
 | Documento | Descripción |
 |---|---|
-| [Monitoring](./monitoring.md) | Estrategia de observabilidad: Cloud Logging, Cloud Monitoring, dashboards por ambiente y políticas de alerta configuradas. |
-| [Guía de uso de Monitoring](./monitoring-user-guide.md) | Guía práctica para navegar Cloud Monitoring, revisar dashboards, alertas, logs y Error Reporting ante un incidente. |
-| [Alternativas de implementación](./monitoring-implementation-alternatives.md) | Cómo replicar la misma estrategia de observabilidad en Azure (Azure Monitor, Log Analytics, Application Insights) o en un Data Center on-premises (Prometheus, Grafana, ELK). |
+| [Monitoring](./docs/monitoring.md) | Estrategia de observabilidad: Cloud Logging, Cloud Monitoring, dashboards por ambiente y políticas de alerta configuradas. |
+| [Guía de uso de Monitoring](./docs/monitoring-user-guide.md) | Guía práctica para navegar Cloud Monitoring, revisar dashboards, alertas, logs y Error Reporting ante un incidente. |
+| [Alternativas de implementación](./docs/monitoring-implementation-alternatives.md) | Cómo replicar la misma estrategia de observabilidad en Azure (Azure Monitor, Log Analytics, Application Insights) o en un Data Center on-premises (Prometheus, Grafana, ELK). |
  
 ### Costos
  
 | Documento | Descripción |
 |---|---|
-| [Billing](./billing.md) | Desglose de costos mensuales por servicio. Cloud SQL representa el mayor porcentaje del gasto de infraestructura. |
+| [Billing](./docs/billing.md) | Desglose de costos mensuales por servicio. Cloud SQL representa el mayor porcentaje del gasto de infraestructura. |
  
 ### Decisiones y portabilidad
  
 | Documento | Descripción |
 |---|---|
-| [Decisiones del proyecto](./desicions.md) | Resumen de las decisiones de infraestructura tomadas: proveedor, base de datos, IaC, configuración, CI/CD y flujo de Git. |
-| [Migración GCP → Azure](./gcp-to-azure-migration.md) | Mapeo de servicios equivalentes, cambios necesarios en backend/frontend/CI-CD y plan de migración por fases. |
+| [Decisiones del proyecto](./docs/desicions.md) | Resumen de las decisiones de infraestructura tomadas: proveedor, base de datos, IaC, configuración, CI/CD y flujo de Git. |
+| [Migración GCP → Azure](./docs/gcp-to-azure-migration.md) | Mapeo de servicios equivalentes, cambios necesarios en backend/frontend/CI-CD y plan de migración por fases. |
+| [Migración GCP → Datacenter UCU](./docs/gcp-to-ucu-datacenter-migration.md) | Mapeo de servicios equivalentes, cambios necesarios en backend/frontend/CI-CD y plan de migración por fases. |
  
 ---
  
@@ -94,7 +95,7 @@ La autenticación de la aplicación es propia (JWT con cookie httpOnly), no depe
 | Artifact Registry | $0.07 |
 | **Total** | **$54.06** |
  
-> Los valores pueden variar por créditos promocionales o beneficios del Free Tier. Ver [billing.md](./billing.md) para el detalle completo.
+> Los valores pueden variar por créditos promocionales o beneficios del Free Tier. Ver [billing.md](./docs/billing.md) para el detalle completo.
  
 ---
  
@@ -119,7 +120,7 @@ Este proyecto sigue **Git Flow**. Reglas principales:
 - Todas las ramas se crean desde `dev`, excepto `hotfix/*` que se crea desde `main`.
 - No se permite push directo a `main` ni a `dev`.
 - Todo cambio pasa por Pull Request con al menos una aprobación.
-Ver el detalle completo, incluyendo la nomenclatura de ramas (`feature/`, `bugfix/`, `hotfix/`, `release/`, `refactor/`, `chore/`, `docs/`), en [Git Workflow](./git-workflow.md).
+Ver el detalle completo, incluyendo la nomenclatura de ramas (`feature/`, `bugfix/`, `hotfix/`, `release/`, `refactor/`, `chore/`, `docs/`), en [Git Workflow](./docs/git-workflow.md).
  
 ---
  
@@ -127,5 +128,5 @@ Ver el detalle completo, incluyendo la nomenclatura de ramas (`feature/`, `bugfi
  
 Si bien la infraestructura actual está desplegada en GCP, la arquitectura fue diseñada para ser portable. La documentación incluye planes concretos de migración de infraestructura y de observabilidad hacia:
  
-- **Microsoft Azure** — ver [Migración GCP → Azure](./gcp-to-azure-migration.md) y [Monitoring en Azure](./monitoring-implementation-alternatives.md).
-- **Data Center on-premises** — ver la [Migración GCP → Datacenter UCU](./gcp-to-ucu-datacenter-migration.md) y [Monitoring en Datacenter](./monitoring-implementation-alternatives.md).
+- **Microsoft Azure** — ver [Migración GCP → Azure](./docs/gcp-to-azure-migration.md) y [Monitoring en Azure](./docs/monitoring-implementation-alternatives.md).
+- **Data Center on-premises** — ver la [Migración GCP → Datacenter UCU](./docs/gcp-to-ucu-datacenter-migration.md) y [Monitoring en Datacenter](./docs/monitoring-implementation-alternatives.md).
