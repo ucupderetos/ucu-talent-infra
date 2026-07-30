@@ -10,6 +10,8 @@ Este repositorio reúne las decisiones de arquitectura, el pipeline de CI/CD, la
  
 El proyecto está desplegado íntegramente en **Google Cloud Platform (GCP)**, con una arquitectura monolítica (decisión tomada explícitamente por restricciones de tiempo). Consta de dos servicios en contenedores, una base de datos relacional y un bucket para almacenamiento de archivos.
  
+ ![Arquitectura de la infraestructura](docs/diagrams/infra-diagram.png)
+ 
 | Componente | Servicio en GCP |
 |---|---|
 | Backend (API, Java + Maven) | Cloud Run (`api-dev` / `api-prod`) |
@@ -79,54 +81,31 @@ La autenticación de la aplicación es propia (JWT con cookie httpOnly), no depe
  
 | Documento | Descripción |
 |---|---|
-| [Decisiones del proyecto](./docs/desicions.md) | Resumen de las decisiones de infraestructura tomadas: proveedor, base de datos, IaC, configuración, CI/CD y flujo de Git. |
-| [Migración GCP → Azure](./docs/gcp-to-azure-migration.md) | Mapeo de servicios equivalentes, cambios necesarios en backend/frontend/CI-CD y plan de migración por fases. |
-| [Migración GCP → Datacenter UCU](./docs/gcp-to-ucu-datacenter-migration.md) | Mapeo de servicios equivalentes, cambios necesarios en backend/frontend/CI-CD y plan de migración por fases. |
+| [Decisiones del proyecto](./docs/decisions.md) | Resumen de las decisiones de infraestructura tomadas: proveedor, base de datos, servicios utilizados, CI/CD y flujo de Git. |
+| [Migración GCP → Azure](./docs/migration/gcp-to-azure-migration.md) | Mapeo de servicios equivalentes, cambios necesarios en backend/frontend/CI-CD y plan de migración por fases. |
+| [Migración GCP → Datacenter UCU](./docs/migration/gcp-to-ucu-datacenter-migration.md) | Mapeo de servicios equivalentes, cambios necesarios en backend/frontend/CI-CD y plan de migración por fases. |
  
 ---
  
-## Resumen de costos
- 
-| Servicio | Costo mensual (USD) |
-|---|---|
-| Cloud SQL | $52.44 |
-| Cloud Run | $1.32 |
-| Cloud DNS | $0.23 |
-| Artifact Registry | $0.07 |
-| **Total** | **$54.06** |
- 
-> Los valores pueden variar por créditos promocionales o beneficios del Free Tier. Ver [billing.md](./docs/billing.md) para el detalle completo.
- 
----
+## Estructura del repositorio
+
+```
+ucu-talent-infra/
+├── database/     Scripts SQL de usuarios, roles y permisos por ambiente
+└── docs/         Documentación de la infraestructura
+│   ├── diagrams/  Diagramas de arquitectura
+│   ├── images/    Capturas utilizadas en las guías
+│   └── migration/ Planes de migración a otros proveedores
+```
+
+La configuración de la base de datos por ambiente está documentada en [database/readme.md](database/readme.md).
  
 ## Ambientes
  
 El proyecto opera con dos ambientes completamente separados, tanto en GitHub (Environments) como en GCP:
  
-| | Desarrollo | Producción |
-|---|---|---|
-| Rama | `dev` | `main` |
-| Backend | `api-dev` | `api-prod` |
-| Frontend | `web-dev` | `web-prod` |
-| Base de datos | `ucu_talent_database_dev` | `ucu_talent_database_prod` |
-| GitHub Environment | `development` | `production` |
+| Ambiente | Rama | Servicios | Base de datos | Frontend | API |
+| -------- | ---- | --------- | ------------- | -------- | --- |
+| DEV / QA | `dev` | `web-dev` / `api-dev` | `ucu_talent_database_dev` | https://dev.ucutalent.tech | https://api-dev.ucutalent.tech |
+| PROD | `main` | `web-prod` / `api-prod` | `ucu_talent_database_prod` | https://www.ucutalent.tech | https://api.ucutalent.tech |
  
----
- 
-## Flujo de contribución (resumen)
- 
-Este proyecto sigue **Git Flow**. Reglas principales:
- 
-- Todas las ramas se crean desde `dev`, excepto `hotfix/*` que se crea desde `main`.
-- No se permite push directo a `main` ni a `dev`.
-- Todo cambio pasa por Pull Request con al menos una aprobación.
-Ver el detalle completo, incluyendo la nomenclatura de ramas (`feature/`, `bugfix/`, `hotfix/`, `release/`, `refactor/`, `chore/`, `docs/`), en [Git Workflow](./docs/git-workflow.md).
- 
----
- 
-## Portabilidad a otros proveedores
- 
-Si bien la infraestructura actual está desplegada en GCP, la arquitectura fue diseñada para ser portable. La documentación incluye planes concretos de migración de infraestructura y de observabilidad hacia:
- 
-- **Microsoft Azure** — ver [Migración GCP → Azure](./docs/gcp-to-azure-migration.md) y [Monitoring en Azure](./docs/monitoring-implementation-alternatives.md).
-- **Data Center on-premises** — ver la [Migración GCP → Datacenter UCU](./docs/gcp-to-ucu-datacenter-migration.md) y [Monitoring en Datacenter](./docs/monitoring-implementation-alternatives.md).
