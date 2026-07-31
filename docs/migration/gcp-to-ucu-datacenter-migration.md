@@ -26,7 +26,7 @@ La arquitectura es un monolito, decisión que fue tomada explícitamente por res
 La autenticación de la aplicación es propia (JWT con cookie httpOnly).
 
 Los secretos administrados hoy en Secret Manager son las credenciales de base de datos del backend y de Flyway, el `jwt-secret` (uno por ambiente) y las credenciales de correo.
-
+ 
 
 ## Mapeo de servicios
 
